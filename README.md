@@ -13,10 +13,8 @@ This project focuses on porting the open-source [Pebble OS](https://github.com/g
 
 ## **Hardware Requirements**  
 - **Microcontroller**: ESP32-based board with Bluetooth LE support.  
-- **Display**: TFT/OLED screen with adjustable viewport to mimic smartwatch dimensions.  
-- **Microphone**: Analog or I2S microphone module for audio input.  
-- **Power Source**: Battery-powered setup for smartwatch-like behavior.  
-
+- **Display**: 1.8 inch TFT screen to mimic smartwatch dimensions.  
+- **Microphone**: I2S microphone module for audio input.  
 ---
 
 ## **Software Stack**  
@@ -27,21 +25,20 @@ The ESP32 firmware includes:
 - **Config File**: Stores key system settings such as Bluetooth pairing details.  
 - **Bluetooth Audio Transmission**: Captures and sends recorded audio over BLE.  
 
-📂 **File: `PebbleOS_ESP_Port_Main_V2_BLE_Audio_Transmi_copy_20250404014810.ino`**  
+📂 **File: `PebbleOS_ESP_Port_BLE_Audio_Transmission_Main.ino`**  
 
 ### **2. Python Receiver (PC/Mobile)**  
-A Python script using the **Bleak** library enables the laptop/mobile device to receive and process the transmitted audio in real time. Additionally, the script leverages **Whisper AI** for speech-to-text conversion.  
+A Python script using the **Bleak** library enables the laptop device to receive and process the transmitted audio in real time. Additionally, the script leverages **Whisper AI** for speech-to-text conversion.  
 
-📂 **File: `bleak_receiver_whisper_v5_realtime_cuda.py`**  
+📂 **File: `bleak_receiver_whisper_realtime.py`**  
 
 ---
 
 ## **User Interface (UI) Feature**  
-A smartwatch-like UI was developed for the Pebble OS port to facilitate user interaction. The interface follows a simple and intuitive navigation flow.  
+A smartwatch-like UI was developed for the Pebble OS port to facilitate user interaction. The interface follows a simple navigation flow.  
 
 ### **1. Display Adaptation**  
-- **Viewport Resizing**: Adjusted the UI to fit the reference board’s **TFT/OLED screen** while maintaining Pebble OS aesthetics.  
-- **Optimized Frame Buffering**: To ensure smooth rendering and reduce flickering.  
+- **Viewport Resizing**: Adjusted the UI to fit the reference board’s **1.8 inch TFT screen** while maintaining Pebble OS aesthetics.    
 
 ### **2. UI Components & User Experience**  
 | **Feature** | **Description** |
@@ -49,23 +46,19 @@ A smartwatch-like UI was developed for the Pebble OS port to facilitate user int
 | **Home Screen** | Displays the main watch face, mimicking a Pebble smartwatch interface. |
 | **Bluetooth Audio Mode** | A dedicated screen for recording and transmitting a 15-second audio note. |
 | **Status Indicators** | Shows Bluetooth connection status, microphone status, and battery level. |
-| **Touch & Button Controls** | Implemented simple touch/tap navigation (if touchscreen is available) and button-based interactions. |
+| **Button Controls** | Implemented simple button-based interactions. |
 
 ### **3. Bluetooth Audio Transmission UI Flow**  
 1. **Home Screen**  
    - Displays current time and device status.  
-   - A button/touch gesture allows switching to the **Audio Mode**.  
+   - A button gesture allows switching to the **Audio Mode**.  
 
 2. **Audio Recording Screen**  
-   - Once in **Audio Mode**, the display updates to show a **recording timer** (15 sec countdown).  
-   - A microphone icon appears when recording starts.  
+   - Once in **Audio Mode**, the display updates to show a **recording timer**  
+   - A recording icon appears when recording starts.  
 
-3. **Bluetooth Transmission Status**  
-   - After recording, the UI updates to indicate **"Transmitting Audio..."** over Bluetooth.  
-   - Once successfully transmitted, a confirmation message appears: **"Audio Sent!"**  
-
-4. **Return to Home**  
-   - After transmission, the screen automatically returns to the **Home Screen**.  
+3. **Return to Home**  
+   - After recording and transmission, the screen automatically returns to the **Home Screen**.  
 
 ### **4. UI Implementation - Key Files**  
 📂 **`display_driver.h/.cpp`** – Handles the rendering of UI elements.  
@@ -80,13 +73,13 @@ A smartwatch-like UI was developed for the Pebble OS port to facilitate user int
 1. The ESP32 records a **15-second audio clip** from the microphone.  
 2. The audio is processed and converted into a Bluetooth-compatible format.  
 3. The device transmits the audio over **BLE (Bluetooth Low Energy)**.  
-4. The Python script on the mobile/PC receives the audio and processes it using Whisper AI for transcription (optional).  
+4. The Python script on the PC receives the audio and processes it using Whisper AI for transcription (optional).  
 
 ### **Key Technical Decisions**  
 | Decision Point | Choice Made | Reasoning |
 |--------------|------------|-----------|
 | **Board Selection** | ESP32 with BLE | Pre-existing BLE stack to avoid driver development. |
-| **Display Type** | TFT/OLED | Small viewport, optimized for smartwatch UI. |
+| **Display Type** | 1.8 inch TFT | Small viewport, optimized for smartwatch UI. |
 | **Audio Format** | PCM over BLE | Maintains quality while ensuring BLE compatibility. |
 | **Transmission Protocol** | Bluetooth Low Energy (BLE) | Lower power consumption and faster data exchange. |
 | **Audio Processing** | Whisper AI | Enables real-time speech-to-text conversion. |
@@ -96,31 +89,23 @@ A smartwatch-like UI was developed for the Pebble OS port to facilitate user int
 
 ## **Installation & Usage**  
 ### **For ESP32 Board**  
-1. Flash the `PebbleOS_ESP_Port_Main_V2_BLE_Audio_Transmi_copy_20250404014810.ino` onto the ESP32 board using Arduino IDE.  
+1. Flash the `PebbleOS_ESP_Port_BLE_Audio_Transmission_Main.ino` onto the ESP32 board using Arduino IDE.  
 2. Ensure the microphone and display are properly connected.  
 3. Power on the device and initiate Bluetooth pairing.  
 
 ### **For PC/Mobile (Python BLE Receiver)**  
 1. Install dependencies:  
    ```bash
-   pip install bleak openai-whisper torch torchaudio
+   pip install bleak faster-whisper torch torchaudio
    ```  
 2. Run the Python script:  
    ```bash
-   python bleak_receiver_whisper_v5_realtime_cuda.py
+   python bleak_receiver_whisper_realtime.py
    ```  
 3. The device will receive and process incoming audio.  
 
 ---
 
 ## **Future Improvements**  
-✔️ Implement real-time audio compression for better BLE transmission.  
-✔️ Extend smartwatch functionalities (notifications, health tracking, etc.).  
-✔️ Optimize power efficiency for prolonged battery life.  
+✔️ Implement real-time audio compression for better BLE transmission. (Using OPUS - WIP)  
 ✔️ Add animations for smoother transitions between screens.  
-✔️ Implement **haptic feedback** for user interactions.  
-✔️ Include a **playback feature** to let users listen before transmitting.  
-
----
-
-This README provides a **clear, structured, and detailed** explanation of the project, **enhancing its presentation and evaluation**. 🚀  
