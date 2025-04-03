@@ -27,7 +27,7 @@ The ESP32 firmware includes:
 
 📂 **File: `PebbleOS_ESP_Port_BLE_Audio_Transmission_Main.ino`**  
 
-### **2. Python Receiver (PC/Mobile)**  
+### **2. Python Receiver (Laptop)**  
 A Python script using the **Bleak** library enables the laptop device to receive and process the transmitted audio in real time. Additionally, the script leverages **Whisper AI** for speech-to-text conversion.  
 
 📂 **File: `bleak_receiver_whisper_realtime.py`**  
