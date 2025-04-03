@@ -1,7 +1,7 @@
 # **Pebble OS Port on Reference Board with Bluetooth Audio Transmission**  
 
 ## **Project Overview**  
-This project focuses on porting the open-source [Pebble OS](https://github.com/google/pebble/tree/main) onto a selected reference board with a display and microphone. Additionally, a new feature has been implemented to **transmit a 15-second audio note via Bluetooth** to a mobile phone or laptop.  
+This project focuses on porting the open-source [Pebble OS](https://github.com/google/pebble/tree/main) functionalities onto a selected reference board with a display and microphone. Additionally, a new feature has been implemented to **transmit a 15-second audio note via Bluetooth** to a mobile phone or laptop.  
 
 ## **Key Components**  
 - **Pebble OS Porting**: Adapted Pebble OS functionalities to run on an ESP32-based reference board with a smartwatch-sized display.  
