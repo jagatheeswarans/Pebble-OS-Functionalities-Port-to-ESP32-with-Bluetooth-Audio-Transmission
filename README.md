@@ -79,7 +79,9 @@ A smartwatch-like UI was developed for the Pebble OS port to facilitate user int
 4. The Python script on the PC receives the audio and processes it using Whisper AI for transcription (optional).  
 
 ### **Demo**  
-https://github.com/jagatheeswarans/Pebble-OS-Functionalities-Port-to-ESP32-with-Bluetooth-Audio-Transmission/raw/main/Demo.mp4
+<video src="https://github.com/jagatheeswarans/Pebble-OS-Functionalities-Port-to-ESP32-with-Bluetooth-Audio-Transmission/raw/main/Demo.mp4" controls width="600">
+Your browser does not support the video tag.
+</video>
 
 ### **Key Technical Decisions**  
 | Decision Point | Choice Made | Reasoning |
