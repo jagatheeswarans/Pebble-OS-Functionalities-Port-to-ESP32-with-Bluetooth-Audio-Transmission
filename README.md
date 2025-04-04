@@ -66,8 +66,8 @@ A smartwatch-like UI was developed for the Pebble OS port to facilitate user int
 📂 **`Pebble_ui.h/.cpp`** – Manages screen transitions and event handling.  
 📂 **`ui_manager.h/.cpp`** – Controls different UI states (Home, Recording, Transmission).  
 
-![IMG_5208](https://github.com/user-attachments/assets/c07d0b62-d60e-48cb-8daa-bab70744e565) ![IMG_5209](https://github.com/user-attachments/assets/91b163b5-3452-4944-bc96-2591d296ea22) 
-![IMG_5207](https://github.com/user-attachments/assets/3ef87830-3e36-4ed8-9a4a-6f1be6975c02) ![IMG_5204](https://github.com/user-attachments/assets/2dc106d8-216f-4011-b22d-91b694f813ce)
+![IMG_5207](https://github.com/user-attachments/assets/3ef87830-3e36-4ed8-9a4a-6f1be6975c02) ![IMG_5208](https://github.com/user-attachments/assets/c07d0b62-d60e-48cb-8daa-bab70744e565) ![IMG_5209](https://github.com/user-attachments/assets/91b163b5-3452-4944-bc96-2591d296ea22) 
+ ![IMG_5204](https://github.com/user-attachments/assets/2dc106d8-216f-4011-b22d-91b694f813ce)
 
 ---
 
